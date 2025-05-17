@@ -1,0 +1,13 @@
+---
+---
+<button data-greeting>Greet ASTRAURI !</button>
+
+<script>
+  import { invoke } from '@tauri-apps/api/core';
+
+  document.querySelector('[data-greeting]')?.addEventListener('click', async () => {
+    console.log('HEY')
+    const data = await invoke('hello_string');
+    console.log(data);
+  });
+</script>
