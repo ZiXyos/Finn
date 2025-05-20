@@ -1,0 +1,21 @@
+---
+---
+
+<input type="text" name="request" placeholder="Enter your request" required/>
+<label for="request">Request:</label>
+<button id="submit-button" type="submit">Submit</button>
+
+<script>
+  import { invoke } from '@tauri-apps/api/core';
+  document.querySelector('#submit-button')?.addEventListener('click', async () => {
+    const inputElement = document.querySelector('input[name="request"]');
+    const requestValue = inputElement instanceof HTMLInputElement ? inputElement.value : '';
+
+    const resp = await invoke('send_request', {
+      request_param: requestValue
+    });
+
+    console.log(resp)
+  })
+
+</script>
