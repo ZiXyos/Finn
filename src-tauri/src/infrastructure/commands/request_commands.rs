@@ -1,4 +1,7 @@
-use crate::core::requests::http_request;
+use crate::{
+    core::{models::common::Response, services::http_service::HTTPService},
+    infrastructure::http::tauri_adapter::TauriHTTPAdapter,
+};
 
 #[tauri::command]
 pub fn hello_string() -> &'static str {
@@ -7,8 +10,8 @@ pub fn hello_string() -> &'static str {
 }
 
 #[tauri::command(rename_all = "snake_case")]
-pub fn send_request(request_param: &str) -> Result<String, String> {
-    let req = http_request::HTTPRequest::new(String::from(request_param));
-    let res = req.execute().unwrap();
-    Ok(res)
+pub fn send_request(request_param: &str) -> Result<Response, String> {
+    let client = TauriHTTPAdapter {};
+    let req = HTTPService::new(client);
+    req.execute_request("GET", Some(String::from(request_param)))
 }
