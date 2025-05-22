@@ -12,7 +12,11 @@
     const requestValue = inputElement instanceof HTMLInputElement ? inputElement.value : '';
 
     const resp = await invoke('send_request', {
-      request_param: requestValue
+      request_param: {
+        method: 'GET',
+        url: requestValue,
+        body: "Hello World  FROM ASTRO"
+      }
     });
 
     console.log(resp)

@@ -12,9 +12,14 @@ impl<T: HTTPClient> HTTPService<T> {
         Self { client }
     }
 
-    pub fn execute_request(&self, method: &str, body: Option<String>) -> Result<Response, String> {
+    pub fn execute_request(
+        &self,
+        method: &str,
+        url: &str,
+        body: Option<String>,
+    ) -> Result<Response, String> {
         self.client.send_request(RequestOptions {
-            url: String::from("https://google.com"),
+            url: String::from(url),
             method: self.method_builder(method),
             body: body,
             headers: Vec::new(),
