@@ -1,11 +1,10 @@
-import type { ComponentProps } from "react";
-import type { FunctionComponent, ReactNode } from "react";
+import type { ComponentProps, FunctionComponent } from "react";
 import { createContext } from "react";
 
 type ButtonContextType = {
   variant: 'default' | 'xs' | 'xl' | 'sm'
 };
-const ButtonContext = createContext < ButtonContextType > ({ variant: 'default' })
+const ButtonContext = createContext<ButtonContextType>({ variant: 'default' })
 
 interface ButtonProps extends ComponentProps<'button'> {
   variant: 'default' | 'xs' | 'xl' | 'sm'
@@ -19,10 +18,13 @@ interface ButtonComposition {
   Text: FunctionComponent<{ text: string }>
 }
 
-const SmallButton: FunctionComponent<ButtonProps> & ButtonComposition = ({ children, variant, onClick, ...props }) => {
+const SmallButton: FunctionComponent<ButtonProps> & ButtonComposition = ({ children, variant, ...props }) => {
   // check variant
   return (
-    <button className={`btn btn-${variant} btn-secondary`} {...props}>
+    <button
+      className={`btn btn-${variant} btn-secondary`}
+      {...props}
+    >
       {children}
     </button>
   )

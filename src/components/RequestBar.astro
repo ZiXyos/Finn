@@ -1,6 +1,4 @@
 ---
-
-import { SmallButton } from '../components/react/Button'
 ---
 
 <label class="input">
@@ -22,33 +20,3 @@ import { SmallButton } from '../components/react/Button'
       placeholder="Request URL"
       />
 </label>
-
-<button
-  class="btn btn-sm btn-primary"
-  id="submit-button"
-  type="submit"
->
-  Submit
-</button>
-<SmallButton variant="sm" >
-  <SmallButton.Text text="REACT BTN"/>
-</SmallButton>
-
-<script>
-  import { invoke } from '@tauri-apps/api/core';
-  document.querySelector('#submit-button')?.addEventListener('click', async () => {
-    const inputElement = document.querySelector('input[name="request"]');
-    const requestValue = inputElement instanceof HTMLInputElement ? inputElement.value : '';
-
-    const resp = await invoke('send_request', {
-      request_param: {
-        method: 'GET',
-        url: requestValue,
-        body: "Hello World  FROM ASTRO"
-      }
-    });
-
-    console.log(resp)
-  })
-
-</script>
