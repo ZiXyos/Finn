@@ -1,6 +1,7 @@
-import { useState, type FunctionComponent } from "react";
+import { useState, type ChangeEvent, type FunctionComponent } from "react";
 import { SmallButton } from './Button';
 import { invoke } from "@tauri-apps/api/core";
+import { InputField } from './InputField'
 
 type Body = {
   [key: string]: unknown | Body
@@ -8,36 +9,52 @@ type Body = {
 
 type RequestParams = {
   method: 'GET' | 'POST' | 'PUT' | 'PATCH';
-  url: URL;
+  url: string;
   body: Body | null
 }
 
 export const RequestLayout: FunctionComponent<{}> = ({ }) => {
-  const [requestParam, setRequestParam] = useState<RequestParams | null>(null);
-  const updateUrl = (url: URL) => {
+  const [requestParam, setRequestParam] = useState<Partial<RequestParams> | null>(null);
+  const updateUrl = (url: string) => {
     setRequestParam(prev => {
-      if (!prev) return {
-        method: 'GET',
-        url: url,
-        body: null
-      }
-
       return {
         ...prev,
         url
       }
     })
   }
+  const updateMethod = (method: 'GET' | 'POST' | 'PUT' | 'PATCH') => {
+    setRequestParam(prev => {
+      return {
+        ...prev,
+        method
+      }
+    })
+  }
+
+  const updateBody = (body: Body) => {
+    setRequestParam(prev => {
+      return {
+        ...prev,
+        body
+      }
+    })
+  }
+
   const requestHandler = async () => {
     const res = requestParam ? await invoke("send_request", {
       request_param: {
         method: requestParam.method,
-        url: requestParam.url.toString(),
+        url: requestParam.url ? requestParam.url.toString() : "",
         body: JSON.stringify(requestParam.body)
       }
     }) : "nothing";
 
     console.log(res)
+  }
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    updateUrl(e.currentTarget.value)
   }
 
   return (
@@ -46,14 +63,22 @@ export const RequestLayout: FunctionComponent<{}> = ({ }) => {
         REQUEST LAYOUT
       </h1>
 
-      <SmallButton
-        variant="sm"
-        id="submit-button"
-        type="submit"
-        onClick={requestHandler}
-      >
-        <SmallButton.Text text="REACT BTN" />
-      </SmallButton>
+      <div>
+        <InputField
+          value={requestParam?.url}
+          onChange={handleInputChange}
+          variant="default"
+          isActive={true}
+        />
+        <SmallButton
+          variant="sm"
+          id="submit-button"
+          type="submit"
+          onClick={requestHandler}
+        >
+          <SmallButton.Text text="REACT BTN" />
+        </SmallButton>
+      </div>
 
     </div>
   )
