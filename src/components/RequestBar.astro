@@ -1,4 +1,6 @@
 ---
+
+import { SmallButton } from '../components/react/Button'
 ---
 
 <label class="input">
@@ -28,6 +30,9 @@
 >
   Submit
 </button>
+<SmallButton variant="sm" >
+  <SmallButton.Text text="REACT BTN"/>
+</SmallButton>
 
 <script>
   import { invoke } from '@tauri-apps/api/core';
