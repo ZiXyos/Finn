@@ -2,6 +2,9 @@ import { useState, type ChangeEvent, type FunctionComponent } from "react";
 import { SmallButton } from './Button';
 import { invoke } from "@tauri-apps/api/core";
 import { InputField } from './InputField'
+import { DropDown } from "./DropDown";
+
+type Method = 'GET' | 'POST' | 'PUT' | 'PATCH'
 
 type Body = {
   [key: string]: unknown | Body
@@ -14,7 +17,12 @@ type RequestParams = {
 }
 
 export const RequestLayout: FunctionComponent<{}> = ({ }) => {
-  const [requestParam, setRequestParam] = useState<Partial<RequestParams> | null>(null);
+  const [currentMethod, setMethod] = useState<Method>("GET");
+  const [requestParam, setRequestParam] = useState<Partial<RequestParams>>({
+    method: currentMethod,
+    url: "",
+    body: null
+  });
   const updateUrl = (url: string) => {
     setRequestParam(prev => {
       return {
@@ -23,7 +31,9 @@ export const RequestLayout: FunctionComponent<{}> = ({ }) => {
       }
     })
   }
-  const updateMethod = (method: 'GET' | 'POST' | 'PUT' | 'PATCH') => {
+  const updateMethod = (method: Method) => {
+    console.log("UPDATE  METHOD: ", method)
+    setMethod(method);
     setRequestParam(prev => {
       return {
         ...prev,
@@ -42,6 +52,7 @@ export const RequestLayout: FunctionComponent<{}> = ({ }) => {
   }
 
   const requestHandler = async () => {
+    console.log("REQUESTING: ", requestParam.url, " METHOD TYPE ", requestParam.method)
     const res = requestParam ? await invoke("send_request", {
       request_param: {
         method: requestParam.method,
@@ -64,6 +75,11 @@ export const RequestLayout: FunctionComponent<{}> = ({ }) => {
       </h1>
 
       <div>
+        <DropDown
+          items={['GET', 'POST', 'DELETE']}
+          currentItem={currentMethod}
+          onTaz={(method) => updateMethod(method as Method)}
+        />
         <InputField
           value={requestParam?.url}
           onChange={handleInputChange}
