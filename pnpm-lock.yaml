@@ -28,7 +28,7 @@ importers:
         version: 5.18.1(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.3)(typescript@5.8.3)
       daisyui:
         specifier: ^5.0.37
-        version: 5.0.37
+        version: 5.5.19
       react:
         specifier: ^19.1.0
         version: 19.2.6
@@ -1197,8 +1197,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  daisyui@5.0.37:
-    resolution: {integrity: sha512-PLc+MhWAqTwolygEGPDi+ac+OsFqIt9nZylTIiyVlEx8loYL7Pt7hNWb8cp5pQQ9dhjYnda1ERiuM6OsJmvPGw==}
+  daisyui@5.5.19:
+    resolution: {integrity: sha512-pbFAkl1VCEh/MPCeclKL61I/MqRIFFhNU7yiXoDDRapXN4/qNCoMxeCCswyxEEhqL5eiTTfwHvucFtOE71C9sA==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -3159,7 +3159,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  daisyui@5.0.37: {}
+  daisyui@5.5.19: {}
 
   debug@4.4.3:
     dependencies:
