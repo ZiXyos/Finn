@@ -28,7 +28,7 @@ importers:
         version: 7.1.5(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(jiti@2.7.0)(rollup@4.62.0)
       daisyui:
         specifier: ^5.0.37
-        version: 5.7.4
+        version: 5.7.28
       react:
         specifier: ^19.1.0
         version: 19.2.6
@@ -1252,8 +1252,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  daisyui@5.7.4:
-    resolution: {integrity: sha512-zKzFIwvEvn2QvE1TbUUtDnYFOqWoxeZh+j4QXfhkZKYAT++pO2ijyT9rkFm0GIPDWR1/oo9hHZzd96AsTK0iZg==}
+  daisyui@5.7.28:
+    resolution: {integrity: sha512-BxQap2QOj7NQy5nEsjTHRmybmUZP3t+O5G6vfdidZuptBsh/QyKN9wbdrGDZk198fMI3UyYnA/rCWlggZIhGnw==}
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -3033,7 +3033,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  daisyui@5.7.4: {}
+  daisyui@5.7.28: {}
 
   debug@4.4.3:
     dependencies:
